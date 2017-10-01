@@ -1,0 +1,76 @@
+<div class="container" style="margin-top: -60px;">
+	<div class="row">
+		<div class="col-12 text-center mykart"> myKart</div><br>
+		<small class="col-12 text-center">Already a member? <a href="#/login"> Signin</a> &#124;<a href="#/"> Shop</a></small>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row" >
+		<div class="col-sm-10 col-md-8 col-lg-6 col-12 mx-auto">		
+			<div class="card card-form">
+				<div class="text-center" id="signup-header">
+					<strong>Create Account</strong>
+				</div>
+				<form name="signupForm" ng-submit="uc.userSignup()" novalidate="">
+					<div class="form-group">
+						<label for="firstName">First Name *</label>
+						<input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" 
+								placeholder="Enter First Name" required="" autofocus="autofocus" ng-model="uc.firstName">
+						<small ng-if="signupForm.firstName.$error.required && signupForm.firstName.$touched">
+							Please enter your firstname.
+						</small>			
+					</div>
+					<div class="form-group">
+						<label for="lastName">Last Name </label>
+						<input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" 
+									placeholder="Enter Last Name" ng-model="uc.lastName">
+					</div>
+					<div class="form-group">
+						<label for="middleName">Middle Name</label>
+						<input type="text" class="form-control" id="middleName" name="middleName" aria-describedby="middleName" 
+									placeholder="Enter Middle Name" ng-model="uc.middleName">
+					</div>
+					<div class="form-group">
+						<label for="email">Email *</label>
+						<input type="email" class="form-control" id="email" name="email" aria-describedby="email" 
+								placeholder="Enter email" required="" ng-model="uc.email">
+						<small ng-if="signupForm.email.$touched && signupForm.email.$invalid">
+							Enter a valid email.
+						</small>
+						<small ng-if="signupForm.email.$touched && signupForm.email.$error.required">
+							Enter your email.
+						</small>
+					</div>
+					<div class="form-group">
+						<label for="mobileNumber">Mobile Number *</label>
+						<input type="number" class="form-control" id="mobileNumber" name="mobileNumber" required="" 
+							aria-describedby="emailHelp" ng-model="uc.mobileNumber" min="1000000000" max="9999999999">
+						<small ng-if="signupForm.mobileNumber.$error.min || signupForm.mobileNumber.$error.max">Enter a 10 digit mobile number</small>
+						<small ng-if="signupForm.mobileNumber.$error.required && signupForm.mobileNumber.$touched">Enter mobile number</small>	
+					</div>
+					<div class="form-group">
+					  	<label for="password">Password *</label>
+					  	<input type="password" class="form-control" id="password" name="password" 
+					  		placeholder="Password" required="" ng-model="uc.password" minlength="8">
+					  	<small ng-if="signupForm.password.$error.minlength  && signupForm.password.$touched">
+					  		Password must be atleast 8 characters long.
+					  	</small>
+					  	<small ng-if="signupForm.password.$error.required && signupForm.password.$touched"> 
+					  		Enter password.
+					  	</small>
+					</div>
+					<div class="form-group">
+						<label for="address">Address *</label>
+    					<textarea class="form-control" id="address" rows="3" placeholder="Enter complete address" 
+    								name="address" required="" ng-model="uc.address"></textarea>
+    					<small ng-if="signupForm.address.$error.required && signupForm.address.$touched">
+    						Enter your address 
+    					</small>
+					</div>
+					<button type="submit" class="btn btn-primary" ng-disabled="signupForm.$invalid">Continue</button>
+				</form>	
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,52 @@
+<nav-bar></nav-bar>
+<div class="container-fluid jumbotron" style="margin-top : -50px; background-color: #232F3E; color : white ;">
+	<div class="row">
+		<div class="col-12 text-center order-head">
+			<strong>Thank you for shopping with us!</strong><br>
+		</div>
+		<div class="col-12 text-center">
+			<p>  Please take a note of the following details. </p>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid" style="min-height: 50vh ;" ng-if="order.data">
+	<div class="row">
+        <div class="card-order col-8 mx-auto">
+	        <div >
+	        	<strong>Shipping Address</strong> : {{order.data.orderDetails.delAddress}}
+	        </div>
+	        <div >
+	        	<strong>Date of delivery</strong> : {{order.data.orderDetails.deliveryDate | date : 'medium'}}
+	        </div>
+	        <div >
+	        	<strong>Mode of payment</strong> : {{order.data.orderDetails.paymentType}} 
+	    	</div>
+	        <div >
+	        	<strong>Order ID</strong> : {{order.data.orderDetails.orderId}} 
+	        </div>
+	        <div style="color: green ;">
+	          	<strong>Total Price</strong> : {{order.data.orderDetails.orderPrice | currency : '&#x20B9; '}}
+	        </div>			
+			<div class="text-center"> <strong>Item(s) ordered</strong> </div>
+          	<div ng-repeat="item in order.data.orderDetails.orderDetails" ng-if="!order.data.orderDetails.orderDetails[0].productInfo">
+            	<div > <strong>Product </strong>: {{item.productName}} </div>
+            	<div style="color: green ;"> <strong>Price </strong>: {{item.productPrice | currency : '&#x20B9;'}}</div>
+          	</div>
+          	<div ng-repeat="item in order.data.orderDetails.orderDetails" ng-if="order.data.orderDetails.orderDetails[0].productInfo">
+            <div > <strong>Product </strong>: {{item.productInfo.productName}} </div>
+            <div > <strong>Quantity </strong>: {{item.quantity}} </div>
+            <div style="color: green ;"> <strong>Price </strong>: {{item.productInfo.productPrice | currency : '&#x20B9;'}}</div>
+            <br>
+          </div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid" ng-if="!order.data" style="min-height: 40vh;">
+	<div class="row">
+		<div class="col-12 text-center" id="no-order">
+			<strong class="">Nothing to show. Please use orderId mentioned in the profile section to get it's update.</strong>
+		</div>
+	</div>
+</div>

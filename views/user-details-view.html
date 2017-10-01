@@ -1,0 +1,73 @@
+<nav-bar></nav-bar>
+
+<!-- Modal -->
+<div class="modal fade" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="passwordChangeLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="container-fluid">
+      	<div class="row">
+      		<div class="col-12 text-center" id="signup-header">
+				<strong>Enter Details</strong>
+			</div>
+			<form name="signupForm" class="col-12">
+				<div class="form-group">
+					<label for="oldpassword">Old Password</label>
+					<input type="password" class="form-control" id="oldpassword" name="oldpassword" 
+						aria-describedby="oldpassword" 
+						placeholder="Old Password" required="" ng-model="user.oldpassword">
+				</div>
+				<div class="form-group">
+				  	<label for="password">New Password </label>
+				  	<input type="password" class="form-control" id="password" name="password" 
+				  		placeholder="New Password" required="" ng-model="user.newpassword" minlength="8" >
+				</div>
+				<button type="button" class="btn btn-primary" style="margin-bottom: 15px;"  ng-click="user.changePassword()" data-dismiss="modal" >Change</button>					
+			</form>
+      		</div>
+      	</div>
+    </div>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="container" style="min-height: 80vh;">
+    <div class="row" >
+	    <div class="col-md-3 col-sm-6 col-8 mx-auto">
+	      	<div class="card-user card">
+	      		<img class="card-img-top" id ="user-image" src="images/user.png" alt="user dummy image">
+	      		<div class="card-body" style="padding-bottom:8px">
+	      			<div class="card-title text-center"><em>Hello {{user.data.firstName}}</em></div>
+	      		</div>
+	      	</div>
+	    </div>
+	    <div class="col-md-9 mx-auto" id="user-details" >	      		    
+	    	<div class="card " style="padding:15px; ">
+	    		<div >
+	    			<strong>Full name :</strong> {{user.data.firstName}} {{user.data.middleName}} {{user.data.lastName}}
+	    		</div>
+	    		<div><strong>Last login :</strong> {{user.data.lastLogin | date : 'medium'}}</div>
+	    		<div><strong>Email : </strong>{{user.data.email}}</div>
+	    		<div ng-if="user.data.mobileNumber"><strong>Mobile :</strong> {{user.data.mobileNumber}}</div>
+	    		<div><strong>Shipping Address :</strong> {{user.data.address}}</div>
+	    		<div><strong>No. of orders placed :</strong> {{user.data.orderHistory.length}}</div>
+	    		<hr>
+	    		<div class="text-center">This account was created on {{user.data.accountCreated | date : 'medium'}}</div>
+	    		<hr>
+	    		<button class="btn btn-info" ng-click="user.showHidePasswordForm()" data-toggle="modal" data-target="#passwordChange">Change Password</button>
+	    	</div>	        		
+	    </div>
+	</div>
+
+	<div class="row" style="margin: 20px;">
+		<p class="col-12 mx-auto"> 
+			<input type="button" class="btn btn-info col" value="Show/Hide order history" ng-click="user.showHideOrderHistory()">
+		</p>
+		<p  class="col-12 mx-auto text-center orderid" ng-if="user.showHistory">
+			<b>You have placed the following orders</b>
+		</p>
+		<div class="col-md-3 col-sm-4 col-6 orderid" ng-repeat="orderId in user.data.orderHistory" ng-if="user.showHistory">
+			<b>{{$index+1}}.</b> {{ orderId}}
+		</div>
+	</div>
+</div>
+<!-- /.container -->

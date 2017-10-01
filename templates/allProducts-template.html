@@ -1,0 +1,31 @@
+
+<div class="card-product " ng-init="items.quantity=1">
+  	<img class="card-img-top" ng-src="{{items.productImage}}" alt="Product Image">
+  	<div class="card-body">
+  		<div class="row">
+	        <p class="col-12" >
+	        	<button class="btn col-12" ng-click="orderNow(items.productId, items.quantity)" style="background-color :#3E9CB5;"> Order now </button>
+	        </p>
+	        <div class="input-group col-12" style="margin-bottom: 10px;">
+	      		<input type="number" name="quantity" ng-model="items.quantity" class="form-control" placeholder="Quantity" min="1" >
+	      		<span class="input-group-btn">
+	        	<button class="btn btn-primary" type="button" title="Add to cart" ng-click="addItemToCart(items.productId , items.quantity)"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+	      		</span> <hr>
+	    	</div>
+	  	  	<div class="product-name col-12">{{items.productName}}</div>
+	  	  	<div class="product-price col-12" >
+	  	  		<strong>{{items.productPrice | currency : '&#8377; '}}</strong>
+	  	  	</div>
+			<small class="text-muted col-12">Category : {{items.productCategory | uppercase}} </small>
+			<div class="info-btn col-12" ng-click="showDescription()" ng-if="!showDetails"> View More.. </div>
+			<div class="hide col-12" ng-if="showDetails" >
+				{{items.productDescription}} <br>
+				<div class="info-btn" ng-click="showDescription()"> View Less.. </div>
+			</div>
+			<div class="card-fade col-12" >
+				{{items.productDescription}} <br>
+			</div>
+	    </div>
+ 	</div>  	  	
+</div>
+

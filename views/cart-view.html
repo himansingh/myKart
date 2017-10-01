@@ -1,0 +1,54 @@
+<nav-bar></nav-bar>
+
+<div class="container">
+	<div class="row">
+		<div class="col-6 col-sm-6 col-md-2 text-center product-item"> <em>My Cart ({{cart.itemsInCart.length}})</em> </div>
+		<div class="col-6 col-sm-6 col-md-2 order-md-2" style="margin-bottom:10px;">
+			<input type="button" class="btn btn-info" value="Clear cart" ng-click="cart.clearMyCart()">
+		</div>
+		<div class="col-12 col-md-8 order-md-1" >
+			<input type="button" class="btn btn-info col" value="Place order" ng-click="cart.orderFromCart()">
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid" style="min-height: 55vh; margin-top: 25px; margin-bottom: 10px;">
+	<div class="row" ng-if="cart.itemsInCart.length" style="margin-left: 5px; margin-right: 5px;">
+		<div class="col-lg-3 col-md-6 col-sm-6 col-12" ng-repeat="item in cart.itemsInCart" >
+			<div class="card-product">
+			  	<img class="card-img-top" ng-src="{{item.productImage}}" alt="Product Image">
+			  	<div class="row" style="margin : 10px;">
+				  	<div class="product-name col-sm-12">{{item.productName}}</div>
+				  	<div class="product-item col-12">
+				  		<strong>Quantity</strong> : {{item.quantity}}
+				  	</div>
+				  	<div class="product-price col-12">
+				  	  	<strong>Total Cost : {{item.productPrice * item.quantity | currency : '&#8377; '}}</strong>
+				  	</div>
+				  	<div class="product-item col-12 " >
+				  	  	<strong>Added on </strong> : {{item.addedOn | date : medium}}
+				  	</div>
+					<div class="info-btn-cart col-12" ng-click="item.showDetails =  true" ng-if="!item.showDetails" style="color: blue; text-decoration: underline;">
+						Show More.. 
+					</div>
+					<div class="col-12 hide" ng-if="item.showDetails" >
+						{{item.productDescription}} <br>
+						<span ng-click="item.showDetails =  false" style="color: blue; text-decoration: underline;">Show Less..</span>
+					</div>
+					<p class="col-10 mx-auto" style="margin-top: 10px;">
+				       	<button class="btn col" ng-click="cart.removeItemFromCart(item.productId, $index)" style="background-color :#3E9CB5;"> Remove </button>
+				    </p>
+				    <div class="input-group col-10 mx-auto" style="margin-bottom: 10px;">
+				   		<input type="number" name="quantity" ng-model="item.qty" class="form-control" placeholder="Quantity" min="1" >
+				   		<span class="input-group-btn">
+				       	<input type="button" class="btn" value="Reduce" ng-click="cart.reduceItemFromCart(item.productId, item.qty)" style="background-color :#3E9CB5;">
+				   		</span>
+				   	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-if="!cart.itemsInCart.length">
+		<div class="col-12 mx-auto text-center" style="padding-top: 50px; font-size: 25px;"> <em>Your cart is empty</em> </div>
+	</div>
+</div>
