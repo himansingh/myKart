@@ -13,7 +13,6 @@ myApp.controller('productsController', ['getProductsService','cartsService', fun
 			console.log(response);
 			product.categories = response.data.data ;
 		}, function(reason){
-
 			alert('Some error occured!');
 			console.log(reason);
 		});
@@ -31,16 +30,13 @@ myApp.controller('productsController', ['getProductsService','cartsService', fun
 			product.allProducts = response.data.data ;
 			cartsService.getAllItemDetails(response.data.data);
 		} , function(reason){
-
 			console.log(reason);
 			alert("Some error occured!");
 		});
-
 	}; // end of viewAllProducts
 
 
 	this.viewByCategories = function (categoryType) {
-
 		product.showAllProducts = false ;
 		product.showByCategory = true ;
 
@@ -48,9 +44,7 @@ myApp.controller('productsController', ['getProductsService','cartsService', fun
 		.then(function(response){
 			console.log(response);
 			product.categoricalProducts = response.data.data ;
-
 		} , function(reason){
-
 			console.log(reason);
 			alert("Some error occured!");
 		});

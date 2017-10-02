@@ -8,7 +8,6 @@ myApp.controller('cartController', ['$location', '$rootScope','cartsService','$s
 		let token = { authToken : $sessionStorage.storedAuthToken } ; 
 		cartsService.viewCart(token)
 		.then(function(response){
-			console.log('This is response from view user cart', response);
 			cart.qtyAndDate = response.data.data.cartInfo ;
 			console.log("Items qty and date", cart.qtyAndDate);
 			$sessionStorage.cartLength = cart.qtyAndDate.length ;
@@ -32,7 +31,6 @@ myApp.controller('cartController', ['$location', '$rootScope','cartsService','$s
 			cart.allProducts = response.data.data ;
 			cartsService.getAllItemDetails(response.data.data);
 			cart.itemsInCart = cartsService.filterItems(cart.qtyAndDate);
-			//console.log("Items in cart from second call", cart.itemsInCart);
 		} , function(reason){
 			console.log(reason);
 			alert("Some error occured!");
@@ -55,7 +53,7 @@ myApp.controller('cartController', ['$location', '$rootScope','cartsService','$s
 				console.log(reason);
 				alert("Some error occured!");
 			});
-		}
+		} // end of if
 	};
 
 	this.reduceItemFromCart = function(productId, qty){
@@ -126,6 +124,7 @@ myApp.controller('cartController', ['$location', '$rootScope','cartsService','$s
 
 		if(!result){
 			alert("Item Removed successfully!");
+			$sessionStorage.cartLength = $sessionStorage.cartLength-1 ;
 			cart.itemsInCart.splice(index,1);
 		}
 		else{
@@ -145,7 +144,6 @@ myApp.controller('cartController', ['$location', '$rootScope','cartsService','$s
 	};
 
 	this.orderFromCartRequest = function(){
-
 		let token = {
 			authToken : $sessionStorage.storedAuthToken
 		};
@@ -159,13 +157,13 @@ myApp.controller('cartController', ['$location', '$rootScope','cartsService','$s
 			alert("Some error occured!");
 			console.log(reason);
 		});
-	}
+	}; // end of orderFromCartRequest
 
 	this.checkOrderDetails = function(response){
 
 		if(!response.data.error){
-				orderService.saveOrderDetails(response.data.data);
-				$location.path('/orderdetails');
+			orderService.saveOrderDetails(response.data.data);
+			$location.path('/orderdetails');
 		}	
 		else {
 			$sessionStorage.$reset();
@@ -173,6 +171,6 @@ myApp.controller('cartController', ['$location', '$rootScope','cartsService','$s
 			$rootScope.isloggedIn = false ;
 			$location.path('/');
 		}
-	};
+	}; // end of checkOrderDetails
 
 }]); // end of controller

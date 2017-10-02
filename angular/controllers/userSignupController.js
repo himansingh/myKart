@@ -5,7 +5,6 @@ myApp.controller('userSignupController', ['userDataService','$location', functio
 	this.userSignup = function(){
 
 		var userData = {
-
 			firstName	: user.firstName,
 			lastName	: user.lastName,
 			middleName	: user.middleName,
@@ -13,7 +12,6 @@ myApp.controller('userSignupController', ['userDataService','$location', functio
 			address		: user.address,
 			mobileNumber: user.mobileNumber,
 			password	: user.password
-
 		} ;
 
 		userDataService.signup(userData)

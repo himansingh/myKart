@@ -5,7 +5,6 @@ myApp.directive('productsByCategory',function(){
 			templateUrl : 'templates/productsByCategory-template.html',
 			scope : {
 				itemsByCatergory :'=',
-				//addItemToCart	: '&'
 			},
 
 			controller : function($scope, cartsService, $sessionStorage, orderService, $rootScope, $location){
@@ -95,7 +94,6 @@ myApp.directive('productsByCategory',function(){
 
 				angular.element('.card-fade').fadeOut('fast');
 				element.on('mouseenter', function(){
-					//angular.element('.card-product').addClass('card-z');
 					angular.element(this).find('.card-fade').fadeIn('fast');
 				});
 

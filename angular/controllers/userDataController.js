@@ -9,7 +9,6 @@ myApp.controller('userDataController', ['$rootScope','$sessionStorage','$route',
 		console.log("user data is", user.data);
 
 		if(!user.data){
-
 			let data = { authToken : authToken };
 
 			userDataService.retrieveData(data)
@@ -42,7 +41,6 @@ myApp.controller('userDataController', ['$rootScope','$sessionStorage','$route',
 	}; // end of changePassword
 
 	this.confirmChangePassword = function(error){
-
 		if(!error){
 			alert("Password changed successfully");
 			$route.reload();
@@ -50,16 +48,6 @@ myApp.controller('userDataController', ['$rootScope','$sessionStorage','$route',
 		else
 			alert("Old password mismatch!\nTry again");
 	}; // end of confirmChangePassword
-
-	// if authToken mismatches then sessionStorage is reset
-	this.resetSessionStorage = function(error){
-		if(error){
-			$sessionStorage.$reset();
-			$rootScope.isloggedIn = false ;
-			alert(" You were logged out! Please login again to continue.");
-			$location.path('/login');
-		}
-	}; // end of resetSessionStorage
 
 	this.showHideOrderHistory = function(){
 		count++;
@@ -69,5 +57,4 @@ myApp.controller('userDataController', ['$rootScope','$sessionStorage','$route',
 		else
 			user.showHistory = true ;
 	};
-
 }]);

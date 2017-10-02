@@ -54,16 +54,14 @@
 	      	<div class="row" >
 	      		<div class="col-lg-4 col-sm-6 col-10"  
 	      						ng-repeat="product in pc.allProducts 	| priceFilter : pc.minPrice : pc.maxPrice
-	      													| orderBy : price | filter : product.search" ng-if="pc.showAllProducts">	    
-	        		<all-products items="product" add-item-to-cart="pc.addItemToCart(product.productId , product.quantity)">
-	        		</all-products>	
+	      													| orderBy : price | filter : product.search" ng-if="pc.showAllProducts">  
+	        		<all-products items="product" > </all-products>	
 	        	</div>
 	        	
 	        	<div class="col-lg-4 col-sm-6 col-10" 
 	        				ng-repeat="product in pc.categoricalProducts | priceFilter : pc.minPrice : pc.maxPrice
 	        											| orderBy : price | filter : product.search" ng-if="pc.showByCategory">
-	        		<products-by-category items-by-catergory="product" add-item-to-cart="pc.addItemToCart">
-	        		</products-by-category>	        		
+	        		<products-by-category items-by-catergory="product" ></products-by-category>	        		
 	        	</div>		
 	      	</div>
 	    </div>	    	   

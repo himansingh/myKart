@@ -125,7 +125,7 @@ body {
 	font-style: italic;
 }
 
-input.ng-invalid.ng-dirty.ng-touched{
+input.ng-invalid.ng-dirty, input.ng-invalid.ng-touched{
 	border : 2px solid red ;
 }	
 
@@ -187,6 +187,10 @@ input.ng-invalid.ng-dirty.ng-touched{
 		width: 100px ;
 		display: block ;
 		margin : auto;
+	}
+
+	#cart-card{
+		margin-left: -15px ;
 	}
 }
 

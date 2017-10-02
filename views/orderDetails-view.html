@@ -10,9 +10,9 @@
 	</div>
 </div>
 
-<div class="container-fluid" style="min-height: 50vh ;" ng-if="order.data">
-	<div class="row">
-        <div class="card-order col-8 mx-auto">
+<div class="container-fluid" style="min-height: 50vh ;" >
+	<div class="row" ng-if="order.data">
+        <div class="card-order col-10 mx-auto" style="margin-bottom: 10px;">
 	        <div >
 	        	<strong>Shipping Address</strong> : {{order.data.orderDetails.delAddress}}
 	        </div>
@@ -27,26 +27,29 @@
 	        </div>
 	        <div style="color: green ;">
 	          	<strong>Total Price</strong> : {{order.data.orderDetails.orderPrice | currency : '&#x20B9; '}}
-	        </div>			
-			<div class="text-center"> <strong>Item(s) ordered</strong> </div>
+	        </div><br>			
+			<div class="text-center"> <strong>Item(s) ordered</strong> </div> <br> <br>
           	<div ng-repeat="item in order.data.orderDetails.orderDetails" ng-if="!order.data.orderDetails.orderDetails[0].productInfo">
             	<div > <strong>Product </strong>: {{item.productName}} </div>
             	<div style="color: green ;"> <strong>Price </strong>: {{item.productPrice | currency : '&#x20B9;'}}</div>
           	</div>
           	<div ng-repeat="item in order.data.orderDetails.orderDetails" ng-if="order.data.orderDetails.orderDetails[0].productInfo">
-            <div > <strong>Product </strong>: {{item.productInfo.productName}} </div>
-            <div > <strong>Quantity </strong>: {{item.quantity}} </div>
-            <div style="color: green ;"> <strong>Price </strong>: {{item.productInfo.productPrice | currency : '&#x20B9;'}}</div>
-            <br>
-          </div>
+            	<div > <strong>Product </strong>: {{item.productInfo.productName}} </div>
+            	<div > <strong>Quantity </strong>: {{item.quantity}} </div>
+            	<div style="color: green ;"> <strong>Price </strong>: {{item.productInfo.productPrice | currency : '&#x20B9;'}}</div>
+            	<br>
+          	</div>
+          	<div >
+				<a href="#/" class="btn btn-danger" style="float: right; margin-top : 10px;">Continue Shopping &#x2192;</a>
+			</div><br>
 		</div>
 	</div>
-</div>
-
-<div class="container-fluid" ng-if="!order.data" style="min-height: 40vh;">
-	<div class="row">
+	<div class="row" ng-if="!order.data">
 		<div class="col-12 text-center" id="no-order">
 			<strong class="">Nothing to show. Please use orderId mentioned in the profile section to get it's update.</strong>
+		</div>
+		<div class="col-12" >
+			<a href="#/" class="btn btn-danger" style="float: right; margin-top : 10px;">Continue Shopping &#x2192;</a>
 		</div>
 	</div>
 </div>

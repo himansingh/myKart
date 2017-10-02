@@ -15,7 +15,7 @@
 <div class="container-fluid" style="min-height: 55vh; margin-top: 25px; margin-bottom: 10px;">
 	<div class="row" ng-if="cart.itemsInCart.length" style="margin-left: 5px; margin-right: 5px;">
 		<div class="col-lg-3 col-md-6 col-sm-6 col-12" ng-repeat="item in cart.itemsInCart" >
-			<div class="card-product">
+			<div class="card-product" id="cart-card">
 			  	<img class="card-img-top" ng-src="{{item.productImage}}" alt="Product Image">
 			  	<div class="row" style="margin : 10px;">
 				  	<div class="product-name col-sm-12">{{item.productName}}</div>
@@ -50,5 +50,10 @@
 	</div>
 	<div class="row" ng-if="!cart.itemsInCart.length">
 		<div class="col-12 mx-auto text-center" style="padding-top: 50px; font-size: 25px;"> <em>Your cart is empty</em> </div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<a href="#/" class="btn btn-danger" style="float: right; margin-top: 10px;">Continue Shopping &#x2192;</a>
+		</div>
 	</div>
 </div>

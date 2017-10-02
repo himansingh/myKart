@@ -1,6 +1,5 @@
 <nav-bar></nav-bar>
 
-<!-- Modal -->
 <div class="modal fade" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="passwordChangeLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -29,7 +28,6 @@
   </div>
 </div>
 
-<!-- Page Content -->
 <div class="container" style="min-height: 80vh;">
     <div class="row" >
 	    <div class="col-md-3 col-sm-6 col-8 mx-auto">
@@ -62,12 +60,14 @@
 		<p class="col-12 mx-auto"> 
 			<input type="button" class="btn btn-info col" value="Show/Hide order history" ng-click="user.showHideOrderHistory()">
 		</p>
-		<p  class="col-12 mx-auto text-center orderid" ng-if="user.showHistory">
+		<p  class="col-12 mx-auto text-center orderid" ng-if="user.showHistory && user.data.orderHistory.length">
 			<b>You have placed the following orders</b>
 		</p>
-		<div class="col-md-3 col-sm-4 col-6 orderid" ng-repeat="orderId in user.data.orderHistory" ng-if="user.showHistory">
+		<div class="col-md-3 col-sm-4 col-6 orderid" ng-repeat="orderId in user.data.orderHistory" ng-if="user.showHistory && user.data.orderHistory.length">
 			<b>{{$index+1}}.</b> {{ orderId}}
 		</div>
+		<p ng-if="!user.data.orderHistory.length && user.showHistory" class="text-center col-12">
+			You have not placed any order yet!
+		</p>
 	</div>
 </div>
-<!-- /.container -->
