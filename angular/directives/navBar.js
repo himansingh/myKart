@@ -1,6 +1,6 @@
 myApp.directive('navBar',function(){
 	// everytime this directive is loaded login/logout status is checked by making http request to load userdata
-	//if authToken has expired then loginin button is made visible.
+	//if authToken has expired then login button is made visible.
 	return{
 			restrict : 'E',
 			templateUrl : 'templates/nav-template.html',
@@ -58,10 +58,8 @@ myApp.directive('navBar',function(){
 
 				$scope.checkLogStatus = function(data){
 					if(data.error){
-						console.log("Changing is logged in to false and then reset session and then reload route");
 						$rootScope.isloggedIn = false ;
 						$sessionStorage.$reset();
-						//$route.reload();					
 					}
 					else{
 						$rootScope.isloggedIn = true ;
